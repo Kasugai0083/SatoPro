@@ -1,0 +1,335 @@
+
+※文字列が崩れるので、メモ帳などで開く場合は等幅フォントを使って表示すること。
+　Visual Studioで表示してもよい。
+
+//--------------------------------------------
+問１
+　次のプログラムを実行した時の結果を選択肢から選べ
+
+#include <stdio.h>
+void function( int rows )
+{
+    if( rows <= 0){ return; }
+
+    int max_num = 1 + (rows - 1) * 2;
+    for(int i=0; i < rows; i++)
+    {
+        int num = 1 + (i * 2);
+        for(int j=0; j < (max_num-num)/2; j++ )
+        {
+            printf(" ");
+        }
+        for(int j=0; j < num; j++ )
+        {
+            printf("*");
+        }
+        printf("\n");
+    }
+}
+
+int main(void){
+    function( 5 );
+    return 0;
+}
+
+選択肢
+a:
+    *
+   ***
+  *****
+ *******
+*********
+
+b:
+*
+***
+*****
+*******
+*********
+
+c:
+        *
+      ***
+    *****
+  *******
+*********
+
+d:
+*********
+ *********
+  *********
+   *********
+    *********
+
+e:
+    *********
+   *********
+  *********
+ *********
+*********
+
+答え[  e   ]
+
+//--------------------------------------------
+問２
+　次は「Hit & Blow」ゲームをプログラミングしたものである
+　空欄に入る答えを選択肢から選び、プログラムを完成させよ
+
+　「Hit & Blow」とは、ランダムに選ばれた４桁の数字の、
+　並び順と数を両方一致させるゲームで、各桁の数は全て異なるものになっている
+　並び順と数が両方あっている場合はHit、数だけあっている場合はBlowとカウントする
+　例：
+　　1111や1212などにはならない。
+　　1234という答えに対し、1456を入力した場合Hit = 1, Blow = 1となる
+
+#include <iostream>
+#include <ctime>
+#include <stdlib.h>
+using namespace std;
+
+#define DIGITS 4   /* けた数 */
+#define TRUE  1
+#define FALSE 0
+#include <ctype.h>
+
+int isMatch(char target[], char num[])
+{
+    int numH = 0;
+    int numB = 0;
+
+    for(int i = 0; i < DIGITS; i++){
+        for(int j = 0; j < DIGITS; j++){
+            if( /* (1) */ ){
+                if( /* (2) */ ){ numH++; }
+                else      { numB++; }
+            }
+        }
+    }
+
+    if(numH == DIGITS){
+        printf("正解です。\n");
+        return TRUE;
+    }
+    printf("%sは%dHit,%dBlowです。\n\n", num, numH, numB);
+    return FALSE;
+}
+
+int isValidNumber(char num[])
+{
+    int i, j;
+
+    for( i = 0; isdigit(num[i]); i++ );
+    if( /* (3) */ ) return FALSE;
+
+    for( i = 0; i < DIGITS - 1; i++ ){
+        for( j = i + 1; j < DIGITS; j++ ){
+            if( num[i] == num[j] ) return /* (4) */;
+        }
+    }
+    return /* (5) */;
+}
+
+void createRandomNumber(char num[]) {
+    int i;
+
+    num[DIGITS] = '\0';
+    do {
+        for( i = 0; i < DIGITS; i++ ){
+            num[i] = '0' + rand()%10;
+        }
+    } while( isValidNumber( num ) == FALSE );
+}
+
+int main()
+{
+    srand( time(NULL) );
+ 
+    char target[DIGITS + 1];   /* 目標数の保存領域 */
+    char num[DIGITS + 1];      /* 推測数の保存領域 */
+    int count = 0;             /* 推測回数 */
+
+    /* (6) */;   /* 目標数の生成 */
+    do{
+        printf("[%d回目] 各けたが異なる%dけたの数を入力してください:", ++count, DIGITS);
+
+        cin.width( DIGITS+1 );
+        cin >> num;
+        while( /* (7) */ == FALSE ){
+            printf("入力が正しくありません。再度入力してください:");
+
+            cin.clear();
+            cin.ignore（numeric_limits <streamsize>::max(),'\n'）;
+            cin >> num;
+        }
+        cin.width();
+    }while( /* (8) */ == FALSE );
+}
+
+//a: createRandomNumber(target)
+b: isValidNumber(num)
+//c: TRUE
+//d: FALSE
+//e: target[i] == num[j]
+f: isMatch(target, num)
+//g: i != DIGITS
+//h: i == j
+
+(1)[  e  ]
+(2)[  h  ]
+(3)[  g  ]
+(4)[  d  ]
+(5)[  c  ]
+(6)[  a  ]
+(7)[  b  ]
+(8)[  f  ]
+
+//--------------------------------------------
+問３
+　以下は、入力された西暦が、グレゴリオ歴においてうるう年かを調べるプログラムである
+　空欄に入る答えを選択肢から選び、プログラムを完成させよ
+　なお、選択肢は複数選んでもよい
+
+　グレゴリオ歴における、うるう年の条件
+　　１、西暦年号が4で割り切れる年をうるう年とする
+　　２、１の例外として、西暦年号が100で割り切れて400で割り切れない年はうるう年ではない
+
+#include <stdio.h>
+int main()
+{
+	int 
+
+	int year = 2404; 
+	if( /* (1) */ ){
+		if ( /* (2) */ ){
+			if ( /* (3) */ ){
+				/* (4) */
+			}
+			else{
+				/* (5) */
+			}
+		}
+		else{
+			/* (6) */
+		}
+	}
+	else{
+		/* (7) */
+	}
+ return 0;
+}
+
+a: year % 400 == 4
+b: year % 400 == 0
+c: year % 4 == 4
+d: year % 4 == 0
+e: year % 100 == 4
+f: year % 100 == 0
+g: printf("うるう年です\n");
+h: printf("うるう年ではありません\n");
+
+(1)[  d  ]
+(2)[  f  ]
+(3)[  b  ]
+(4)[  g  ]
+(5)[  h  ]
+(6)[  h  ]
+(7)[  h  ]
+
+//--------------------------------------------
+問４
+　以下は １ から inputNum まで順に数字を出力していくプログラムである
+　ただし、数字が３で割り切れる時は"Fizz"、５で割り切れる時は"Buzz"
+　両方で割り切れる時は"FizzBuzz"と代わりに出力するものとする
+
+　空欄に入る答えを選択肢から選び、プログラムを完成させよ
+
+#include <iostream>
+int main ()
+{
+	int inputNum = 20;
+	int i;　// ループカウンタ
+	
+	for( /* (1) */ )
+	{
+		if( /* (2) */ )
+		{
+			std::cout << /* (5) */ << std::endl;
+		}
+		else if( /* (3) */ ) // ３で割り切れる
+		{
+			std::cout << "Fizz" << std::endl;
+		}
+		else if( /* (4) */ )
+		{
+			std::cout << /* (6) */ << std::endl;
+		}
+		else
+		{
+			std::cout << /* (7) */ << std::endl;
+		}
+	}
+
+	return 0;
+}
+
+//a: i % 3 == 0 && i % 5 == 0
+b: i % 3 == 0 || i % 5 == 0
+c: i / 3 == 0 && i / 5 == 0
+d: i / 3 == 0 || i / 5 == 0
+//e: i % 3 == 0
+f: i / 3 == 0
+//g: i % 5 == 0
+h: i / 5 == 0
+i: i
+j: "Fizz"
+//k: "Buzz"
+//l: "FizzBuzz"
+m: i = inputNum; i > 0; i--
+n: i = inputNum - 1; i >= 0; i--
+//o: i = 1; i <= inputNum; i++
+p: i = 0; i < inputNum; i++
+
+(1)[  o  ]
+(2)[  g  ]
+(3)[  e  ]
+(4)[  a  ]
+(5)[  k  ]
+(6)[  l  ]
+(7)[    ]
+
+//--------------------------------------------
+問５
+　以下は、n回目のフィボナッチ数列の解を求めるプログラムである
+　空欄に入る答えを選択肢から選び、プログラムを完成させよ
+　なお、CalcFibonacciSeriesの引数 n に負数が入ることはないものとする
+
+
+フィボナッチ数列とは　/* (1) */　となる数列の事である
+
+long CalcFibonacciSeries(int n){
+	if (n == 0) {
+		return /* (2) */;
+	}
+	if (n == 1) {
+		return /* (3) */;
+	}
+	return CalcFibonacciSeries(/* (4) */) + CalcFibonacciSeries(n - 2);
+}
+
+a: 3
+b: 2
+c: 1
+d: 0
+e: n
+f: n + 1
+g: n - 1
+h: n + 2
+i: 1 からある数までの連続する整数の積
+j: 前２つの項の和が次の項
+k: 次の項の値が、前の項に対して特定の数との和
+
+(1)[    ]
+(2)[    ]
+(3)[    ]
+(4)[    ]
+

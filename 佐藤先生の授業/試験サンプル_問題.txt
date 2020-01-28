@@ -1,0 +1,121 @@
+基礎知識
+・以下の画像情報の時、空欄に入る数値、式を答えよ
+    W : 512 pixel
+    H : 128 pixel
+    color : ARGB (8bit/チャンネル)
+  上記情報から、イメージサイズは[   ]KBである。
+  また、計算式は[                              ]となる。
+
+n進法について
+・次に示す２進数を、１０進数と１６進数で答えよ
+   2進数  1100 1010
+  10進数  [        ]
+  16進数  [        ]
+
+ビット演算について
+・次に示す計算式の解を16進数で答えよ
+  0xC8 | 0x0A  [        ]
+  0x4B & 0xE5  [        ]
+
+・次に示す計算式の解を10進数で答えよ
+  1 << 8     [      ]
+  16 >> 2    [      ]
+
+型について
+・次に示す型のサイズをバイトで答えよ
+  char*         [        ]
+  short         [        ]
+  unsigned int  [        ]
+  long long     [        ]
+
+プログラムで使う英単語について
+・次の英単語の日本語訳を下記の選択肢から選べ
+  include       [        ]
+  structure     [        ]
+  private       [        ]
+  return        [        ]
+  decision      [        ]
+  disable       [        ]
+  template      [        ]
+  apply         [        ]
+  while         [        ]
+  define        [        ]
+
+  a. ～を含める  b. ～を定義する  c. 非公開      d. 無効にする    e. 適用する
+  f. 決定        g. 鋳型          h. 戻る・返る  i. ～の間ずっと  j. 構造体
+
+プログラムについて
+・次のプログラムを実行したとき、printf関数によって出力される結果①、②を答えよ
+void func( int n )
+{
+	if( n > 0 )
+	{
+		func( n - 1 );
+	}
+	else
+	{
+		printf( "%d", n++ );  // ①[      ]
+	}
+}
+
+int main( void )
+{
+	int n = 5;
+
+	func( n );
+	printf( "%d", ++n );  // ②[      ]
+	return 0;
+}
+
+・次のプログラムを実行したとき、printf関数によって出力される結果①を答えよ
+class CFuncA
+{
+public:
+	CFuncA()  { a = 0; }
+	virtual ~CFuncA() {}
+
+	void SetValue( int value ) { a = value; }
+	void AddValue( int value ) { a += value; }
+
+	const int& GetValue() const { return a; }
+
+protected:
+	int a;
+};
+
+class CFuncB : public CFuncA
+{
+public:
+	CFuncB()  { b = 0; }
+	virtual ~CFuncB() {}
+
+	void SetValue( int value ) { b = value; }
+	void AddValue( int value ) { b += value; }
+
+	const int& GetValue() const { return b; }
+
+private:
+	int b;
+};
+
+int main ( void )
+{
+	CFuncB* var1 = new CFuncB();
+	CFuncA* var2 = new CFuncB();
+	float ans = 0.0f;
+
+	var1->SetValue( 10 );
+	var2->SetValue( 20 );
+
+	int& arg = const_cast<int&>( reinterpret_cast<CFuncA*>(var1)->GetValue() );
+	arg = 30;
+
+	dynamic_cast < CFuncB *>(var2)->AddValue( 3 );
+	var2->AddValue( 8 );
+
+	ans = var1->GetValue() / dynamic_cast < CFuncB *>(var2)->GetValue();
+	printf( "%d", static_cast<int>(ans) );  //  ①[      ]
+
+	return 0;
+}
+

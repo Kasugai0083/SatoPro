@@ -1,0 +1,159 @@
+
+//--------------------------------------------
+問１
+	答え
+		[ a ]
+
+		特定の図形を * で描くfor文の問題
+		ソースコードを読み解ければ難しくはない
+
+	#include <stdio.h>
+	void function( int rows )
+	{
+		if( rows <= 0){ return; }
+
+		int max_num = 1 + (rows - 1) * 2;
+		for(int i=0; i < rows; i++)
+		{
+			// この行で表示するアスタリスクの数
+			int num = 1 + (i * 2);
+	
+			// 左側のスペース
+			for(int j=0; j < (max_num-num)/2; j++ )
+			{
+				printf(" ");
+			}
+			// アスタリスク
+			for(int j=0; j < num; j++ )
+			{
+				printf("*");
+			}
+			printf("\n");
+		}
+	}
+
+	int main(void){
+		function( 5 );
+		return 0;
+	}
+
+
+//--------------------------------------------
+問２
+　答え
+	条件はわかっているので、
+	後は関数名や内容から処理を読み解いていけばよい
+	(1)[ e ]
+	(2)[ h ]
+	(3)[ i ]
+	(4)[ d ]
+	(5)[ c ]
+	(6)[ a ]
+	(7)[ b ]
+	(8)[ f ]
+　
+//--------------------------------------------
+問３
+　答え
+	条件はわかっているので、
+	後は関数名や内容から処理を読み解いていけばよい
+
+	(1)[ d ]
+	(2)[ f ]
+	(3)[ b ]
+	(4)[ g ]
+	(5)[ h ]
+	(6)[ g ]
+	(7)[ h ]
+
+	#include <stdio.h>
+	int main()
+	{
+		int year = 2404; 
+		if( year % 4 == 0 ){
+			if ( year % 100 == 0 ){
+				if ( year % 400 == 0 ){
+					printf("うるう年です\n");
+				}
+				else{
+					printf("うるう年ではありません\n");
+				}
+			}
+			else{
+				printf("うるう年です\n");
+			}
+		}
+		else{
+			printf("うるう年ではありません\n");
+		}
+	return 0;
+	}
+
+//--------------------------------------------
+問４
+　答え
+	有名なFizzBuzz問題
+	本質を隠すためにFizzとBuzzの名称や、割り切れるとする数がかわるかもしれない点に注意
+	※うるう年の問題と計算内容は似ているので、両方の問題が同時に出ることはほぼないと思われる
+
+	(1)[ o ]
+	(2)[ a ]
+	(3)[ e ]
+	(4)[ g ]
+	(5)[ l ]
+	(6)[ k ]
+	(7)[ i ]
+
+	#include <iostream>
+	int main ()
+	{
+		int inputNum = 20;
+		int i;　// ループカウンタ
+
+		for( int i = 1; i <= inputNum; i++ )
+		{
+			if( i % 3 == 0 && i % 5 == 0 )
+			{
+				std::cout << "FizzBuzz" << std::endl;
+			}
+			else if( i % 3 == 0 )
+			{
+				std::cout << "Fizz" << std::endl;
+			}
+			else if( i % 5 == 0 )
+			{
+				std::cout << "Buzz" << std::endl;
+			}
+			else
+			{
+				std::cout << i << std::endl;
+			}
+		}
+		return 0;
+	}
+
+
+//--------------------------------------------
+問５
+　答え
+	FizzBuzz問題と同様、フィボナッチ数列も有名な問題
+	再帰関数を使った例題としては優秀
+
+	フィボナッチ数列の例
+		0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55,....
+
+	(1)[ j ]
+	(2)[ d ]
+	(3)[ c ]
+	(4)[ g ]
+
+	long CalcFibonacciSeries(int n){
+		if (n == 0) {
+			return 0;
+		}
+		if (n == 1) {
+			return 1;
+		}
+		return CalcFibonacciSeries(n - 1) + CalcFibonacciSeries(n - 2);
+	}
+
